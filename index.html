@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Firewatch Probe</title>
+		<script type="text/javascript" src="firewatch/dweet.io.min.js"></script>
+		<script type="text/javascript" src="firewatch/firewatch.1.js"></script>
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		<script>
+			/*firewatch inititation*/
+			if(window.addEventListener)
+				window.addEventListener('load', firewatch_init, false);
+			else window.attachEvent('load', firewatch_init);
+			function firewatch_init(e){
+				firewatch.init({
+					id:"firewatch_v1",
+					gauges:[	
+						["CO",{max: 500}],
+					    ["Temp",{max: 500}],
+						["Light",{max: 1000}]
+					]
+				})
+			}
+		</script>
+	</head>
+
+	<body><div id="firewatch_v1"></div></body>
+</html>
+
+
+
+
