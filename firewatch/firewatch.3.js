@@ -9,8 +9,8 @@ let firewatch = {
 	'data': [],
 	'gauges':[],
 	'gauge':{
-		//width:150, 
-		//height: 150
+		width:150, 
+		height: 150
 	},
 	'init':(function(options){
 		if (options.id) firewatch.id = options.id;
