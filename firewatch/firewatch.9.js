@@ -37,7 +37,7 @@ let firewatch = {
 
 				//div.style = 'display:inline-block;text-align:center';
 				div.innerHTML = '<h1>'+firewatch.gauges[i][0]+'</h1>';
-
+				console.log(firewatch.gauges[i][0]);
 				span.style = 'text-align:center';
 				span.id = 'chart_'+firewatch.gauges[i][0];
 				span.class = 'chart';
@@ -148,6 +148,7 @@ let firewatch = {
 		for (var i = 0; i < firewatch.gauges.length; i++) {
 			if (firewatch.gauges[i][0] == 'Temp'){
 				firewatch.data[i].setValue(0,0,firewatch.temp);
+				firewatch.charts[i].draw(firewatch.data[i], firewatch.gauges[i][1]);
 				break;
 			}
 		}
