@@ -21,6 +21,13 @@
 .image img{ width: 100%; }
 
 @media (max-width: 1200px){
-	.charts{ width: 100%; }
+	.charts{ width: 100%; margin-bottom:.5em; }
 	.image{ width: 100%; }
+}
+@media (max-width: 550px){
+	.charts{ -webkit-justify-content: center; justify-content: center; -webkit-flex-wrap: wrap; flex-wrap: wrap; }
+	.charts > div{ width: 50%; margin-bottom:.5em; }
+}
+@media (max-width: 330px){
+	.charts > div{ width: 100%; }
 }
