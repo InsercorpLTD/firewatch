@@ -3,7 +3,6 @@
 	<head>
 		<title>Firewatch Probe</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link href="https://cdn.rawgit.com/InsercorpLTD/firewatch/master/firewatch/firewatch.1.css" media="screen" rel="stylesheet" type="text/css" />
 		<script type="text/javascript" src="https://cdn.rawgit.com/InsercorpLTD/firewatch/master/firewatch/firewatch.1.js"></script>
 
 		<script type="text/javascript" src="https://dweet.io/client/dweet.io.min.js"></script>
@@ -22,6 +21,17 @@
 						["Light",{max: 1000},"lx","Light"]
 					]
 				});
+				var cssId = 'myCss';  // you could encode the css path itself to generate id..
+				if (!document.getElementById(cssId)){
+					var head  = document.getElementsByTagName('head')[0];
+					var link  = document.createElement('link');
+					link.id   = cssId;
+					link.rel  = 'stylesheet';
+					link.type = 'text/css';
+					link.href = 'https://cdn.rawgit.com/InsercorpLTD/firewatch/master/firewatch/firewatch.1.css';
+					link.media = 'all';
+					head.appendChild(link);
+				}
 			}
 		</script>
 	</head>
