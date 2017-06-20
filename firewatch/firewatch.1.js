@@ -29,7 +29,7 @@ let firewatch = {
 					label = document.createElement('SPAN');
 
 				div.style = 'display:inline-block;text-align:center';
-				div.innerHTML = firewatch.gauges[i][0];
+				div.innerHTML = '<h1>'+firewatch.gauges[i][0]+'</h1>';
 
 				span.style = 'text-align:center';
 				span.id = 'chart_'+firewatch.gauges[i][0];
