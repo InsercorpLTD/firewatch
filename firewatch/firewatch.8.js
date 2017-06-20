@@ -12,6 +12,7 @@ let firewatch = {
 		width:150, 
 		height: 150
 	},
+	'toggle': 'enabled',
 	'init':(function(options){
 		if (options.id) firewatch.id = options.id;
 		if (options.gauges) firewatch.gauges = options.gauges;
@@ -89,6 +90,11 @@ let firewatch = {
 			// Removes the Probe is offline message if it exists
 			let active = document.getElementById('active-label');
 			if (active){ active.innerHTML = 'Status: Online'; active.className = 'label label-default'; }
+			if(firewatch.toggle == 'disabled'){ 
+				let img = firewatch.ele.querySelector('.image');
+				if (img) img.innerHTML = '<a onclick="firewatch.camera_toggle();" class="button-1" title="Enable Webcam">Enable Webcam</a>';
+				firewatch.toggle = 'enabled'; 
+			}
 			/* update the charts */
 			for (var i = 0; i < firewatch.gauges.length; i++) {
 				if(firewatch.data[i] && firewatch.charts[i]){
@@ -119,13 +125,9 @@ let firewatch = {
 		}else{
 			let active = document.getElementById('active-label');
 			if (active){ active.innerHTML = 'Status: Offline'; active.className = 'label label-default'; }
-			
-			/*let ele = firewatch.ele;
-			let active = document.createElement('span');
-			active.id = 'active-label'; active.class = 'label label-default';
-			active.innerHTML = 'Status: Offline';
-			active.style="width:100%;";
-			ele.insertBefore(active,ele.querySelector('.charts'));*/
+			let img = firewatch.ele.querySelector('.image');
+			if (img) img.innerHTML = '<a onclick="return false;" class="button-1 disabled" title="Enable Webcam">Enable Webcam</a>';
+			firewatch.toggle = 'disabled';
 		}
 	}),
 	'fahrenheit':(function(degrees){ return Math.round(degrees * 9 / 5 + 32) }),
