@@ -1,0 +1,19 @@
+.firewatch{ 
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: row;
+	flex-direction: row;
+}
+.charts{
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: row;
+	flex-direction: row;
+	width: 75%;
+}
+.charts > div{ width: 33%; text-align:center;}
+.charts > div > span { width: 100%; }
+.charts > div > span > table{ margin:0 auto!important; }
+
+.image{ width:25%; }
+.image img{ width: 100%; }

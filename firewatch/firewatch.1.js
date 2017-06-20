@@ -9,8 +9,8 @@ let firewatch = {
 	'data': [],
 	'gauges':[],
 	'gauge':{
-		width:150, 
-		height: 150
+		//width:150, 
+		//height: 150
 	},
 	'init':(function(options){
 		if (options.id) firewatch.id = options.id;
@@ -28,7 +28,7 @@ let firewatch = {
 					span = document.createElement('SPAN'),
 					label = document.createElement('SPAN');
 
-				div.style = 'display:inline-block;text-align:center';
+				//div.style = 'display:inline-block;text-align:center';
 				div.innerHTML = '<h1>'+firewatch.gauges[i][0]+'</h1>';
 
 				span.style = 'text-align:center';
