@@ -21,7 +21,13 @@ let firewatch = {
 	'setup':(function(){
 		firewatch.ele = document.getElementById(firewatch.id);
 		if (firewatch.ele){
-			firewatch.ele.innerHTML = '<div class="charts"></div><div class="image"><a onclick="firewatch.camera_toggle();">Camera (click to start)</a></div>';
+			firewatch.ele.innerHTML = '<div style="width:100%;">'
+					+'<span id="active-label" class="label label-success">Status: Online</span>'
+				+'</div>'
+				+'<div class="charts"></div>'
+				+'<div class="image">'
+					+'<a onclick="firewatch.camera_toggle();" class="button-1" title="Enable Webcam">Enable Webcam</a>'
+				+'</div>';
 			let ele = firewatch.ele.querySelector('.charts');
 			for (var i = 0; i < firewatch.gauges.length; i++){
 				let div = document.createElement('DIV'),
@@ -81,8 +87,8 @@ let firewatch = {
 			let ele = firewatch.ele,
 				html = '';
 			// Removes the Probe is offline message if it exists
-			let activeEle = document.getElementById('active-label');
-			if (activeEle){ activeEle.remove(); }
+			let active = document.getElementById('active-label');
+			if (active){ active.innerHTML = 'Status: Online'; active.className = 'label label-default'; }
 			/* update the charts */
 			for (var i = 0; i < firewatch.gauges.length; i++) {
 				if(firewatch.data[i] && firewatch.charts[i]){
@@ -106,24 +112,32 @@ let firewatch = {
 			/* add the image stream to the div.image */
 			if (firewatch.image && dweet.content.link){
 				let img = firewatch.ele.querySelector('.image');
-				if (img) img.innerHTML = '<img src="'+dweet.content.link+'?action=stream" />';
+				if (img) img.innerHTML = '<a onclick="firewatch.camera_toggle_off();" class="button-1" title="Disable Webcam">Disable Webcam</a> <img src="'+dweet.content.link+'?action=stream" />';
 				firewatch.image = false;
 			}
 			
 		}else{
-			let ele = firewatch.ele;
-			let active = document.createElement('H2');
-			active.id = 'active-label';
-			active.innerHTML = 'Probe is Offline';
+			let active = document.getElementById('active-label');
+			if (active){ active.innerHTML = 'Status: Offline'; active.className = 'label label-default'; }
+			
+			/*let ele = firewatch.ele;
+			let active = document.createElement('span');
+			active.id = 'active-label'; active.class = 'label label-default';
+			active.innerHTML = 'Status: Offline';
 			active.style="width:100%;";
-			ele.insertBefore(active,ele.querySelector('.charts'));
+			ele.insertBefore(active,ele.querySelector('.charts'));*/
 		}
 	}),
 	'fahrenheit':(function(degrees){ return Math.round(degrees * 9 / 5 + 32) }),
 	'camera_toggle':(function(e){
 		let img = firewatch.ele.querySelector('.image');
-		if (img) img.innerHTML = 'Loading...';
+		if (img) img.innerHTML = '<a onclick="firewatch.camera_toggle_off();" class="button-1" title="Disable Webcam">Disable Webcam</a> <div>Loading...</div>';
 		firewatch.image = true
+	}),
+	'camera_toggle_off':(function(e){
+		let img = firewatch.ele.querySelector('.image');
+		if (img) img.innerHTML = '<a onclick="firewatch.camera_toggle();" class="button-1" title="Enable Webcam">Enable Webcam</a>';
+		firewatch.image = false;
 	}),
 	'temp_toggle':(function(e){
 		if (firewatch.temp == 'Fahrenheit')
