@@ -110,7 +110,7 @@ let firewatch = {
 			
 		}else{
 			let ele = firewatch.ele;
-			let active = document.createElement('H1');
+			let active = document.createElement('H2');
 			active.id = 'active-label';
 			active.innerHTML = 'Probe is Offline';
 			active.style="width:100%;";
