@@ -3,6 +3,8 @@
 	display: flex;
 	-webkit-flex-direction: row;
 	flex-direction: row;
+	-webkit-flex-wrap: wrap;
+    flex-wrap: wrap;
 }
 .charts{
 	display: -webkit-flex;
@@ -17,3 +19,8 @@
 
 .image{ width:25%; }
 .image img{ width: 100%; }
+
+@media (max-width: 1200px){
+	.charts{ width: 100%; }
+	.image{ width: 100%; }
+}
