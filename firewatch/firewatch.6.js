@@ -48,12 +48,14 @@ let firewatch = {
 				firewatch.gauges[i][1].width = firewatch.gauge.width;
 				firewatch.gauges[i][1].height = firewatch.gauge.height;
 				firewatch.gauges[i][1].minorTicks = firewatch.gauge.minorTicks;
-				firewatch.gauges[i][1].greenFrom = 0;
-				firewatch.gauges[i][1].greenTo = firewatch.gauges[i][1].max*.75;
-				firewatch.gauges[i][1].redFrom = firewatch.gauges[i][1].max*.9;
-				firewatch.gauges[i][1].redTo = firewatch.gauges[i][1].max;
-				firewatch.gauges[i][1].yellowFrom = firewatch.gauges[i][1].max*.75;
-				firewatch.gauges[i][1].yellowTo = firewatch.gauges[i][1].max*.9;
+
+				let ranges = setRanges(firewatch);
+				firewatch.gauges[i][1].greenFrom = ranges.range[i].greenFrom;
+				firewatch.gauges[i][1].greenTo = ranges.range[i].greenTo;
+				firewatch.gauges[i][1].redFrom = ranges.range[i].redFrom;
+				firewatch.gauges[i][1].redTo = ranges.range[i].redTo;
+				firewatch.gauges[i][1].yellowFrom = ranges.range[i].yellowFrom;
+				firewatch.gauges[i][1].yellowTo = ranges.range[i].yellowTo;
 			}
 	  		google.charts.load('current', {'packages':['gauge']});
 		  	google.charts.setOnLoadCallback(firewatch.setup_charts);
@@ -135,3 +137,33 @@ let firewatch = {
 		}
 	})
 };
+
+function setRanges(firewatch){
+	let ranges = {
+		'range': [{
+			greenFrom:0,
+			greenTo:90,
+			yellowFrom:90,
+			yellowTo: 100,
+			redFrom: 100,
+			redTo: firewatch.gauges[0][1].max
+		},
+		{
+			greenFrom:0,
+			greenTo:150,
+			yellowFrom:150,
+			yellowTo: 200,
+			redFrom: 200,
+			redTo: firewatch.gauges[1][1].max
+		},
+		{
+			greenFrom: 100,
+			greenTo: firewatch.gauges[2][1].max,
+			yellowFrom: 10,
+			yellowTo: 100,
+			redFrom: 0,
+			redTo: 10
+		}]
+	};
+	return ranges;
+}
