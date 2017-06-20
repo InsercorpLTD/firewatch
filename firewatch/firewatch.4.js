@@ -58,7 +58,9 @@ let firewatch = {
 	  		google.charts.load('current', {'packages':['gauge']});
 		  	google.charts.setOnLoadCallback(firewatch.setup_charts);
 			/* listen for incoming firewatch data */
+			dweetio.get_latest_dweet_for((firewatch.dweet||firewatch.id),firewatch.receive); 
 			dweetio.listen_for((firewatch.dweet||firewatch.id),firewatch.receive); 
+			
 		}
 	}),
 	'setup_charts':(function(e){
@@ -76,6 +78,9 @@ let firewatch = {
 		if(dweet && dweet.content){
 			let ele = firewatch.ele,
 				html = '';
+			// Removes the Probe is offline message if it exists
+			let activeEle = document.getElementById('active-label');
+			if (activeEle){ activeEle.remove(); }
 			/* update the charts */
 			for (var i = 0; i < firewatch.gauges.length; i++) {
 				if(firewatch.data[i] && firewatch.charts[i]){
@@ -102,6 +107,14 @@ let firewatch = {
 				if (img) img.innerHTML = '<img src="'+dweet.content.link+'?action=stream" />';
 				firewatch.image = false;
 			}
+			
+		}else{
+			let ele = firewatch.ele;
+			let active = document.createElement('H1');
+			active.id = 'active-label';
+			active.innerHTML = 'Probe is Offline';
+			active.style="width:100%;";
+			ele.insertBefore(active,ele.querySelector('.charts'));
 		}
 	}),
 	'fahrenheit':(function(degrees){ return Math.round(degrees * 9 / 5 + 32) }),
