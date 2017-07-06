@@ -19,7 +19,8 @@
 
 .image{ width:25%; }
 .image img{ width: 100%; }
-
+#active-label{ display:inlie-block; }
+#active-label.success-label{ background-color:#109618; }
 @media (max-width: 1200px){
 	.charts{ width: 100%; margin-bottom:.5em; }
 	.image{ width: 100%; }
