@@ -89,7 +89,7 @@ let firewatch = {
 				html = '';
 			// Removes the Probe is offline message if it exists
 			let active = document.getElementById('active-label');
-			if (active){ active.innerHTML = 'Status: Online'; active.className = 'label label-default'; }
+			if (active){ active.innerHTML = 'Status: Online'; active.className = 'label label-success'; }
 			if(firewatch.toggle == 'disabled'){ 
 				let img = firewatch.ele.querySelector('.image');
 				if (img) img.innerHTML = '<a onclick="firewatch.camera_toggle();" class="button-1" title="Enable Webcam">Enable Webcam</a>';
